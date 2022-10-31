@@ -385,7 +385,12 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/GameOverController.cs"
+"Assets/Scripts/GameStartController.cs"
+"Assets/Scripts/Managers/LevelManager.cs"
+"Assets/Scripts/Managers/SessionManager.cs"
 "Assets/Scripts/Models/Player.cs"
+"Assets/Scripts/Utilities/Singleton.cs"
 -langversion:9.0
 
 /deterministic
