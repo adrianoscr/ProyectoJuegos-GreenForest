@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/CentralForest.unity
+- path: Assets/Scenes/DeepForest.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
