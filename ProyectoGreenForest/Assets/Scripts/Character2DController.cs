@@ -7,7 +7,6 @@ public class Character2DController : MonoBehaviour
     [SerializeField]
     Rigidbody2D rb;
 
-
     [Header("Move System")]
     [SerializeField]
     float speed = 6.0F;
@@ -50,6 +49,7 @@ public class Character2DController : MonoBehaviour
     [SerializeField]
     Animator animator;
 
+    bool grounded;
 
 
     void Start()
@@ -60,6 +60,8 @@ public class Character2DController : MonoBehaviour
         if (rb == null) {
             rb = GetComponent<Rigidbody2D>();
         }
+
+        grounded = isGrounded();
     }
 
 
@@ -124,11 +126,13 @@ public class Character2DController : MonoBehaviour
                 }
             }
 
-            //It starts falling
-            if (rb.velocity.y < 0.0F)
-            {
-                rb.velocity -= reverseGravity * fallMultiplier * Time.deltaTime;
-            }
+        }
+
+
+        //It starts falling
+        if (rb.velocity.y < 0.0F)
+        {
+            rb.velocity -= reverseGravity * fallMultiplier * Time.deltaTime;
         }
 
 
@@ -144,6 +148,9 @@ public class Character2DController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5F);
             }
         }
+
+
+  
     }
 
 
@@ -174,11 +181,31 @@ public class Character2DController : MonoBehaviour
     ///Animations controllers 
     /// </summary>
     void animations() {
-        //Execute walk animatione
-        if (animator.GetFloat("speed") != Mathf.Abs(move.x))
+        
+        //Execute jump machine animation
+        if (rb.velocity.y > 0.0F) {
+            if (animator.GetFloat("power") != 1.0F) {
+                animator.SetFloat("power", 1.0F);
+
+            }
+            grounded = false;
+        }
+        else if (rb.velocity.y < 0.0F)
         {
+            if (animator.GetFloat("power") != -1.0F)
+            {
+                animator.SetFloat("power", -1.0F);
+
+            }
+            grounded = false;
+        }
+        //Execute walk animatione
+        else if (animator.GetFloat("speed") != Mathf.Abs(move.x))
+        {
+            animator.ResetTrigger("grounded");
             animator.SetFloat("speed", Mathf.Abs(move.x));
         }
+
     }
 
 
@@ -186,7 +213,26 @@ public class Character2DController : MonoBehaviour
     {
         //Getting left or right moving
         move = new Vector2(Input.GetAxisRaw("Horizontal"), 0.0F);
+        
+      
         jump();
+       
+        
+        //If the player is not on the floor
+        if (!grounded)
+        {
+
+            bool IsGrounded = isGrounded();
+
+            if (grounded != IsGrounded)
+            {
+                grounded = IsGrounded;
+                animator.SetFloat("power", 0.0F);
+                animator.SetTrigger("grounded");
+            }
+
+        }
+
 
     }
 
@@ -197,6 +243,7 @@ public class Character2DController : MonoBehaviour
         animations();
 
         moving();
+
     }
 
 
