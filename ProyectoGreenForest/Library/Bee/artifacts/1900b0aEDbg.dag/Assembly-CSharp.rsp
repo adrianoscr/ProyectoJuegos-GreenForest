@@ -394,6 +394,7 @@
 "Assets/Scripts/Managers/SessionManager.cs"
 "Assets/Scripts/Models/Player.cs"
 "Assets/Scripts/ParalaxController.cs"
+"Assets/Scripts/PlayerCombatSystem/PlayerCombat.cs"
 "Assets/Scripts/Utilities/Singleton.cs"
 -langversion:9.0
 

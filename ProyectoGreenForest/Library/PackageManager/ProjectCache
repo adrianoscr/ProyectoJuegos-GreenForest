@@ -3219,7 +3219,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: Burst is a compiler that translates from IL/.NET bytecode to highly
     optimized native code using LLVM.
   status: 4
@@ -3344,6 +3344,7 @@ m_ResolvedPackages:
     - 1.8.0-pre.2
     - 1.8.0
     - 1.8.1
+    - 1.8.2
     compatible:
     - 1.6.6
     - 1.7.0-pre.1
@@ -3356,6 +3357,7 @@ m_ResolvedPackages:
     - 1.8.0-pre.2
     - 1.8.0
     - 1.8.1
+    - 1.8.2
     verified: 1.6.6
   dependencies:
   - name: com.unity.mathematics
@@ -3371,7 +3373,7 @@ m_ResolvedPackages:
     scopes: []
     isDefault: 1
     capabilities: 7
-  hideInEditor: 1
+  hideInEditor: 0
   isAssetStorePackage: 0
   datePublishedTicks: 637914262830000000
   documentationUrl: 
@@ -4435,6 +4437,7 @@ m_ResolvedPackages:
     - 1.8.1-preview
     - 1.8.2-preview
     - 1.8.3-preview
+    - 1.8.4-preview
     - 2.0.0-pre.1
     - 2.0.0-pre.2
     - 2.0.0
