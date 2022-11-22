@@ -4,51 +4,77 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [Header("Animation control")]
-    [SerializeField]
-    Animator animator;
-
 
     [Header("Attack control")]
     [SerializeField]
+    LayerMask enemyLayers;
+
+    [SerializeField]
     Transform meleBiteAttack;
+
+    [SerializeField]
+    float attackRadius = 0.5F;
 
     [SerializeField]
     float attackBiteRange = 0.5F;
 
     [SerializeField]
-    LayerMask enemyLayers;
+    int attackRate = 2;
+
+    [SerializeField]
+    float damage = 25.0F;
+
+    [Header("Animation control")]
+    [SerializeField]
+    Animator animator;
+
+    float nextAttackTime;
 
 
+    void Start()
+    {
+        FindObjectOfType<CombatController>()?.onAttack.AddListener(SlimeBite);
+
+    }
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.G))
         {
-            SlimeBite();
+            if (nextAttackTime < Time.time)
+            {
+                if (animator.GetFloat("power") < 0.01F)
+                {
+                    animator.SetTrigger("meleAttack");
+                    nextAttackTime = Time.time + attackBiteRange / attackRate;
+                }
+            }
         }
     }
 
     void SlimeBite()
     {
 
-        //ANIMATE
-
-        if (animator.GetFloat("power") < 0.01F && animator.GetFloat("power") > -0.01F)
-        {
-            animator.SetTrigger("meleAttack");
-        }
-
         //DETECT ENEMIES IN RANGE OF ATTACK
         //This functione create and detect in a circle al the colliders
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleBiteAttack.position, attackBiteRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(meleBiteAttack.position, attackRadius, enemyLayers);
 
-
-        //DAMAGE THEM
-        foreach (Collider2D enemy in hitEnemies)
+        if (hitEnemies.Length > 0)
         {
-            Debug.Log("We hit" + enemy.name);
+            //DAMAGE THEM
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                HealthController controller = enemy.GetComponent<HealthController>();
+
+                if (controller != null)
+                {
+                    controller.TakeDamage(damage);
+                }
+            }
         }
+
+        animator.ResetTrigger("meleAttack");
 
     }
 
@@ -62,6 +88,7 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        Gizmos.DrawWireSphere(meleBiteAttack.position, attackBiteRange);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(meleBiteAttack.position, attackRadius);
     }
 }
