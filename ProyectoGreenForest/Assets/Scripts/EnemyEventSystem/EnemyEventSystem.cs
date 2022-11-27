@@ -22,8 +22,8 @@ public class EnemyEventSystem : MonoBehaviour
     IEnumerator OnDieCoroutine(GameObject go)
     {
 
-        damegeEffect.gameObject.SetActive(true);
-        damegeEffect.GetComponent<ParticleSystem>().Play();
+       // damegeEffect.gameObject.SetActive(true);
+       // damegeEffect.GetComponent<ParticleSystem>().Play();
 
 
         yield return new WaitForSeconds(0.5F);
