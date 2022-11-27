@@ -388,7 +388,6 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Character2DController.cs"
-"Assets/Scripts/DialogueController.cs"
 "Assets/Scripts/EnemyEventSystem/EnemyEventSystem.cs"
 "Assets/Scripts/GameOverController.cs"
 "Assets/Scripts/GameStartController.cs"
