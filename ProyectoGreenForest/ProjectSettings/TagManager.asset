@@ -47,6 +47,9 @@ TagManager:
   - name: Enviroment
     uniqueID: 4213362857
     locked: 0
+  - name: Enemies
+    uniqueID: 1322339003
+    locked: 0
   - name: Character
     uniqueID: 542506219
     locked: 0
