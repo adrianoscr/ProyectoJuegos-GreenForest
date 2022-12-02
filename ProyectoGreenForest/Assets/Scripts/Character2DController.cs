@@ -52,12 +52,19 @@ public class Character2DController : MonoBehaviour
     bool grounded;
 
 
+    [Header("Particle System")]
+    [SerializeField]
+    ParticleSystem particle;
+
+
+
     void Start()
     {
         wasFacingRight = isFacingRight;
         reverseGravity = new Vector2(0.0F, -Physics2D.gravity.y);
 
-        if (rb == null) {
+        if (rb == null)
+        {
             rb = GetComponent<Rigidbody2D>();
         }
 
@@ -70,15 +77,18 @@ public class Character2DController : MonoBehaviour
     /// </summary>
     void moving()
     {
+        
         rb.velocity = new Vector2(move.x * speed, rb.velocity.y);
         flip();
+
     }
 
 
     /// <summary>
     /// Return true if is touching the floor.
     /// </summary>
-    bool isGrounded() {
+    bool isGrounded()
+    {
 
         return
             Physics2D.OverlapCapsule(
@@ -150,27 +160,24 @@ public class Character2DController : MonoBehaviour
         }
 
 
-  
+
     }
 
 
     /// <summary>
     /// Flipping left of right
     /// </summary>
-    void flip() {
+    void flip()
+    {
 
-        if (move.x != 0) {
+        if (move.x != 0)
+        {
             bool facingLeft = move.x < 0.0F;
 
-            if (wasFacingRight != facingLeft) {
+            if (wasFacingRight != facingLeft)
+            {
                 wasFacingRight = facingLeft;
-
-                Vector3 localScale = transform.localScale;
-
-                //Turn it
-                localScale.x *= -1;
-
-                transform.localScale = localScale;
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
             }
         }
 
@@ -180,11 +187,14 @@ public class Character2DController : MonoBehaviour
     /// <summary>
     ///Animations controllers 
     /// </summary>
-    void animations() {
-        
+    void animations()
+    {
+
         //Execute jump machine animation
-        if (rb.velocity.y > 0.0F) {
-            if (animator.GetFloat("power") != 1.0F) {
+        if (rb.velocity.y > 0.0F)
+        {
+            if (animator.GetFloat("power") != 1.0F)
+            {
                 animator.SetFloat("power", 1.0F);
 
             }
@@ -204,20 +214,38 @@ public class Character2DController : MonoBehaviour
         {
             animator.ResetTrigger("grounded");
             animator.SetFloat("speed", Mathf.Abs(move.x));
+
         }
 
     }
+
+    /// <summary>
+    /// Player particles activation
+    /// </summary>
+    void activateParticles()
+    {
+
+        if (animator.GetFloat("speed") > 0.01F || animator.GetFloat("power") > 0.01F)
+        {
+            particle.Play();
+        }
+        else
+        {
+            particle.Stop();
+        }
+
+    }
+
 
 
     void Update()
     {
         //Getting left or right moving
         move = new Vector2(Input.GetAxisRaw("Horizontal"), 0.0F);
-        
-      
+
         jump();
-       
-        
+
+
         //If the player is not on the floor
         if (!grounded)
         {
@@ -241,6 +269,8 @@ public class Character2DController : MonoBehaviour
     {
 
         animations();
+
+        activateParticles();
 
         moving();
 
