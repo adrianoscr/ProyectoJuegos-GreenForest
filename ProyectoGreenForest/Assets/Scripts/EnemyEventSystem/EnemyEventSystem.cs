@@ -11,6 +11,7 @@ public class EnemyEventSystem : MonoBehaviour
     void Start()
     {
         FindObjectOfType<HealthController>()?.onDie.AddListener(OnDie);
+
     }
 
 

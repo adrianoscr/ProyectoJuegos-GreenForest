@@ -19,6 +19,11 @@ public class Character2DController : MonoBehaviour
 
     Vector2 move;
 
+    bool canMove = true;
+
+    [SerializeField]
+    Vector2 reboundSpeed;
+
 
     [Header("Jump System")]
     [SerializeField]
@@ -77,10 +82,10 @@ public class Character2DController : MonoBehaviour
     /// </summary>
     void moving()
     {
-        
-        rb.velocity = new Vector2(move.x * speed, rb.velocity.y);
-        flip();
 
+         rb.velocity = new Vector2(move.x * speed, rb.velocity.y);
+         flip();
+        
     }
 
 
@@ -236,43 +241,71 @@ public class Character2DController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// If player takes damage it bounces to the opposite side
+    /// </summary>
+    public void rebound(Vector2 hitPoint, float loseControllTime) {
+
+        animator.SetTrigger("Hit");
+
+        StartCoroutine(loseControl(loseControllTime));
+
+        rb.velocity = new Vector2(-reboundSpeed.x * hitPoint.x, reboundSpeed.y);
+
+        
+    }
+
+    IEnumerator loseControl(float loseControllTime) {
+        canMove = false;
+
+        yield return new WaitForSeconds(loseControllTime);
+
+        canMove = true;
+    }
 
 
     void Update()
     {
-        //Getting left or right moving
-        move = new Vector2(Input.GetAxisRaw("Horizontal"), 0.0F);
+        if (canMove) {
 
-        jump();
+            //Getting left or right moving
+            move = new Vector2(Input.GetAxisRaw("Horizontal"), 0.0F);
+
+            jump();
 
 
-        //If the player is not on the floor
-        if (!grounded)
-        {
-
-            bool IsGrounded = isGrounded();
-
-            if (grounded != IsGrounded)
+            //If the player is not on the floor
+            if (!grounded)
             {
-                grounded = IsGrounded;
-                animator.SetFloat("power", 0.0F);
-                animator.SetTrigger("grounded");
+
+                bool IsGrounded = isGrounded();
+
+                if (grounded != IsGrounded)
+                {
+                    grounded = IsGrounded;
+                    animator.SetFloat("power", 0.0F);
+                    animator.SetTrigger("grounded");
+                }
+
             }
 
         }
-
-
+ 
     }
 
     //It use physics, better move the player here.
     void FixedUpdate()
     {
 
-        animations();
+        if (canMove) {
 
-        activateParticles();
+            animations();
 
-        moving();
+            activateParticles();
+
+            moving();
+
+        }
 
     }
 

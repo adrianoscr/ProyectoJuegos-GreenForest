@@ -17,7 +17,6 @@ public class HealthController : MonoBehaviour
     [SerializeField]
     public UnityEvent<GameObject> onDie;
 
-
     void Start()
     {
         health = maxHealth;
@@ -33,6 +32,7 @@ public class HealthController : MonoBehaviour
             onDie.Invoke(gameObject);
         }
 
-        onDamage.Invoke(gameObject, damage, health);
+       onDamage.Invoke(gameObject, damage, health);
+
     }
 }
