@@ -37,6 +37,7 @@ public class WeaponController : MonoBehaviour
             if (Time.time > nextFireTime)
             {
                 animator.SetTrigger("Fire");
+                AudioController.instance.PlayAudio(AudioController.instance.shot);
                 nextFireTime = Time.time + fireRange / fireRate;
             }
         }

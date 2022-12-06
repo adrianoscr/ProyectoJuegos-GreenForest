@@ -47,6 +47,7 @@ public class PlayerCombat : MonoBehaviour
                 if (animator.GetFloat("power") < 0.01F)
                 {
                     animator.SetTrigger("meleAttack");
+                    AudioController.instance.PlayAudio(AudioController.instance.bite);
                     nextAttackTime = Time.time + attackBiteRange / attackRate;
                 }
             }

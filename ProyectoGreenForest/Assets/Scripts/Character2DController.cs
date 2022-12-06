@@ -82,10 +82,10 @@ public class Character2DController : MonoBehaviour
     /// </summary>
     void moving()
     {
-
-         rb.velocity = new Vector2(move.x * speed, rb.velocity.y);
-         flip();
+        rb.velocity = new Vector2(move.x * speed, rb.velocity.y);
+        flip();
         
+
     }
 
 
@@ -114,6 +114,7 @@ public class Character2DController : MonoBehaviour
         //When it is jumping
         if (Input.GetButtonDown("Jump"))
         {
+        
             if (isGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -122,12 +123,11 @@ public class Character2DController : MonoBehaviour
             }
         }
 
-
         if (rb.velocity.y > 0.0F)
         {
             if (isJumpPressed)
             {
-
+                AudioController.instance.PlayAudio(AudioController.instance.playSound);
                 rb.velocity += reverseGravity * jumpMultiplier * Time.deltaTime;
 
                 jumpCounter += Time.deltaTime;
@@ -217,6 +217,7 @@ public class Character2DController : MonoBehaviour
         //Execute walk animatione
         else if (animator.GetFloat("speed") != Mathf.Abs(move.x))
         {
+
             animator.ResetTrigger("grounded");
             animator.SetFloat("speed", Mathf.Abs(move.x));
 
