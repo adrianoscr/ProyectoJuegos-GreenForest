@@ -32,10 +32,16 @@ public class NormalEnemyController : MonoBehaviour
     [SerializeField]
     float absoluteDistance;
 
+    [SerializeField]
+    Animator animator;
+
+
 
     void Start()
     {
         contador = tiempoCambio;
+        animator = GetComponent<Animator>();
+
     }
 
     void Update()
@@ -91,7 +97,7 @@ public class NormalEnemyController : MonoBehaviour
     void mustChace() {
 
         chaceSpeed = speed * 1.5F;
-
+        animator.SetTrigger("InRange");
         transform.position = Vector2.MoveTowards(transform.position, objective.position, (chaceSpeed * Time.deltaTime));
 
 

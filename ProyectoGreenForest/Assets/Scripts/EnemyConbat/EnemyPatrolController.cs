@@ -9,16 +9,16 @@ public class EnemyPatrolController : MonoBehaviour
     float speed = 2.0F;
 
     [SerializeField]
-    bool facingRight = false;
+    bool facingRight = true;
 
     [SerializeField]
     LayerMask whatIsGround;
 
     [SerializeField]
-    float distanceToGround = 0.75F;
+    Transform groundChecker;
 
     [SerializeField]
-    Transform groundChecker;
+    Animator animator;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
@@ -28,6 +28,7 @@ public class EnemyPatrolController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         isFacingRight = facingRight;
 
@@ -46,7 +47,7 @@ public class EnemyPatrolController : MonoBehaviour
             Physics2D.OverlapBox
                 (
                 groundChecker.position,
-                new Vector2(0.50F, 0.03F),
+                new Vector2(0.39F, 0.03F),
                 0.0F,
                 whatIsGround
                 );
@@ -61,14 +62,24 @@ public class EnemyPatrolController : MonoBehaviour
                 : Vector2.right;
 
             transform.Rotate(new Vector2(0.0F, -180.0F));
+            
         }
+        
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            animator.SetTrigger("InRange");
+        }
+
+    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
 
-        Gizmos.DrawWireCube(groundChecker.position, new Vector2(0.50F, 0.03F));
+        Gizmos.DrawWireCube(groundChecker.position, new Vector2(0.4F, -0.06F));
     }
 
 }
