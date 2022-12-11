@@ -17,7 +17,8 @@ public class EnemyEventSystem : MonoBehaviour
 
     void OnDie(GameObject go)
     {
-        StartCoroutine(OnDieCoroutine(go));
+        Destroy(go);
+        //StartCoroutine(OnDieCoroutine(go));
     }
 
     IEnumerator OnDieCoroutine(GameObject go)

@@ -250,12 +250,33 @@ public class Character2DController : MonoBehaviour
         animator.SetTrigger("Hit");
 
         StartCoroutine(loseControl(loseControllTime));
+        StartCoroutine(playerInvulnerableControl(loseControllTime));
 
         rb.velocity = new Vector2(-reboundSpeed.x * hitPoint.x, reboundSpeed.y);
 
         
     }
 
+    /// <summary>
+    /// The player is invulnerable within a certain time.
+    /// </summary>
+    /// <param name="loseControllTime"></param>
+    /// <returns></returns>
+    IEnumerator playerInvulnerableControl(float loseControllTime)
+    {
+        Physics2D.IgnoreLayerCollision(8, 9, true);
+
+        yield return new WaitForSeconds(loseControllTime+5);
+
+        Physics2D.IgnoreLayerCollision(8, 9, false);
+    }
+
+
+    /// <summary>
+    /// The player won't be able to move within a certain time.
+    /// </summary>
+    /// <param name="loseControllTime"></param>
+    /// <returns></returns>
     IEnumerator loseControl(float loseControllTime) {
         canMove = false;
 
