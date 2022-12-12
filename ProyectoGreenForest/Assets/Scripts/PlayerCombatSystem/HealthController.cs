@@ -16,7 +16,6 @@ public class HealthController : MonoBehaviour
 
     [SerializeField]
     public UnityEvent<GameObject> onDie;
-
     void Start()
     {
         health = maxHealth;
@@ -27,7 +26,7 @@ public class HealthController : MonoBehaviour
     {
         health -= damage;
 
-  
+
         if (health <= 0)
         {
             SessionManager.Instance.AddScore(5);

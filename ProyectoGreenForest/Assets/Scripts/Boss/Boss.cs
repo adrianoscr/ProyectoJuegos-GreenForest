@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-
+    //ref al animator
     private Animator animator;
 
+    //rb
     public Rigidbody2D rb2D;
-
+    //ubicacion del player
     public Transform Player;
-
+    //donde apunta el enemigo
     private bool lookingR = true;
 
 
-    [Header("Area De Vida")]
-    [SerializeField] private float life=100;
-    [SerializeField] private HealthBarBoss healthBarBoss;
-
     [Header("Area De Ataque")]
     [SerializeField] private Transform AttackControllerB;
+    //radio
     [SerializeField] private float radioA;
+    //daño
     [SerializeField] private float damageA;
 
      void Start()
     {
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
-        healthBarBoss.StartBar(life);
+        //busqueda del jugador
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void Update()
     {
+        //distancia entre el jefe y el jugador
         float DistanceP = Vector2.Distance(transform.position, Player.position);
         //animacion
         animator.SetFloat("DistanceP", DistanceP);
@@ -40,7 +40,7 @@ public class Boss : MonoBehaviour
 
 
     //Daño al jefe
-    public void takeDamage(float damage) {
+   /* public void takeDamage(float damage) {
 
         life -= damage;
 
@@ -51,14 +51,18 @@ public class Boss : MonoBehaviour
             animator.SetTrigger("Death");
         }
     }
-
+   */
 
 
     //Muerte
-    private void Death() {
+    public void Death() {
 
+        animator.SetTrigger("Death");
         Destroy(gameObject);
+        
     }
+
+    
 
     //Rotacion
     public void lookingPlayer() {
@@ -85,7 +89,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    //Area de daño
+    //Area de daño,visual
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
