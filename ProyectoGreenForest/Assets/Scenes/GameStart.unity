@@ -431,6 +431,7 @@ MonoBehaviour:
   bite: {fileID: 0}
   bgMusic: {fileID: 2062906874}
   playSound: {fileID: 1412449601}
+  BossHit: {fileID: 0}
 --- !u!4 &538352262
 Transform:
   m_ObjectHideFlags: 0
@@ -1322,7 +1323,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1507693643}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1596043445}
+        m_TargetAssemblyTypeName: GameStartController, Assembly-CSharp
+        m_MethodName: OnPressSalir
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1507693643
 MonoBehaviour:
   m_ObjectHideFlags: 0

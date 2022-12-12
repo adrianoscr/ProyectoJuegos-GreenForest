@@ -250,6 +250,7 @@ public class Character2DController : MonoBehaviour
         animator.SetTrigger("Hit");
 
         StartCoroutine(loseControl(loseControllTime));
+
         StartCoroutine(playerInvulnerableControl(loseControllTime));
 
         rb.velocity = new Vector2(-reboundSpeed.x * hitPoint.x, reboundSpeed.y);
@@ -266,7 +267,13 @@ public class Character2DController : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(8, 9, true);
 
-        yield return new WaitForSeconds(loseControllTime+5);
+        Vector3 escala = new Vector3(0.5F, 0.5F, 1F);
+        transform.localScale = escala;
+
+        yield return new WaitForSeconds(loseControllTime+3.0F);
+
+        escala = new Vector3(1F, 1F, 1F);
+        transform.localScale = escala;
 
         Physics2D.IgnoreLayerCollision(8, 9, false);
     }

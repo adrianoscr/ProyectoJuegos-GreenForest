@@ -27,14 +27,19 @@ public class HealthController : MonoBehaviour
     {
         health -= damage;
 
-        
-
+  
         if (health <= 0)
         {
-            onDie.Invoke(gameObject);
+            SessionManager.Instance.AddScore(5);
+            //onDie.Invoke(gameObject);
+            Destroy(gameObject);
+
         }
 
        onDamage.Invoke(gameObject, damage, health);
 
     }
+
+
+
 }

@@ -6,26 +6,22 @@ using TMPro;
 public class EnemyEventSystem : MonoBehaviour
 {
 
-    [SerializeField]
-    Transform damegeEffect;
+    //[SerializeField]
+    //Transform damegeEffect;
 
-    [SerializeField]
-    TMP_Text score;
+    //[SerializeField]
+    //TMP_Text score;
 
     void Start()
     {
-        FindObjectOfType<HealthController>()?.onDie.AddListener(OnDie);
+        FindObjectOfType<HealthController>()?.onDie.AddListener(meMuero);
 
     }
 
 
-    void OnDie(GameObject go)
+    void meMuero(GameObject go)
     {
         Destroy(go);
-
-        int value = int.Parse(score.text);
-        value = value + 5;
-        score.text = value.ToString();
         //StartCoroutine(OnDieCoroutine(go));
 
 

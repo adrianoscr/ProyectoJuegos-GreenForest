@@ -10,8 +10,7 @@ public class CoinController : MonoBehaviour
         if (collision.gameObject.tag=="Player") {
 
 
-            //carga de la sig escena, en este caso en el deepForest
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         
         }   
     }

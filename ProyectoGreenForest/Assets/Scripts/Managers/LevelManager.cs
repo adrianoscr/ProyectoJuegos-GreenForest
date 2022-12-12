@@ -23,4 +23,16 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    /// <summary>
+    /// REINICIAR DESDE LA ESCENA EN LA QUE ESTOY   
+    /// </summary>
+    public void Reiniciar()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+
+
 }

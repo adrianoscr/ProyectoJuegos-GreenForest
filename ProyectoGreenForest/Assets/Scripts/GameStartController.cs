@@ -10,4 +10,13 @@ public class GameStartController : MonoBehaviour
         AudioController.instance.PlayAudio(AudioController.instance.playSound);
         scene.NextScene();
     }
+
+
+    /// <summary>
+    /// Salirse del juego
+    /// </summary>
+    public void OnPressSalir() {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
+    }
 }

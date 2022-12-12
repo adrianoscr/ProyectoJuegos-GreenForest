@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3169b367719094aaa1a1901684dfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damegeEffect: {fileID: 0}
 --- !u!114 &2255603883516783457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +173,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &2255603883516783461
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -188,8 +187,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000000036114198, y: 0.03029479}
-  m_Size: {x: 0.31000006, y: 0.1585257}
+  m_Offset: {x: -0.0000000064852372, y: -0.05440212}
+  m_Size: {x: 0.71290964, y: 0.71290964}
   m_Direction: 1
 --- !u!95 &2255603883516783460
 Animator:

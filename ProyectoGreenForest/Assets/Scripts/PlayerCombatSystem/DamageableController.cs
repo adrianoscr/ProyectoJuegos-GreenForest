@@ -15,10 +15,13 @@ public class DamageableController : MonoBehaviour
 
     Character2DController playerController;
 
+
+
     void Start()
     {
 
         playerController = GetComponent<Character2DController>();
+        
 
         currentHealth = maxHealth;
 
@@ -45,12 +48,20 @@ public class DamageableController : MonoBehaviour
 
         playerController.rebound(position, loseControllTime);
 
+        if (currentHealth <= 0) {
+            HealthPlayerController.Instance.muerteEvento.Invoke();
+
+            Destroy(gameObject);
+        }
+
     }
 
     public void OnDamage(float percentage)
     {
         HealthPlayerController.Instance.UpdateHeal(percentage);
     }
+
+
 
 
 }

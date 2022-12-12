@@ -26,12 +26,6 @@ public class AudioController : MonoBehaviour
         PlayAudio(bgMusic);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void PlayAudio(AudioSource audio) {
 
 

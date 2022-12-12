@@ -10,7 +10,6 @@ public class EnemyAttackController : MonoBehaviour
     [SerializeField]
     float damage = 10.0F;
 
-
     void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -20,25 +19,12 @@ public class EnemyAttackController : MonoBehaviour
 
             if (controller != null)
             {
+
                 controller.TakeDamage(damage, collision.GetContact(0).normal);
+
             }
         }
         
     }
 
-    /*
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        //CinemachineShakerController.Instance.ShakeOnce(collision.gameObject.layer);
-
-        DamageableController controller = collision.GetComponent<DamageableController>();
-
-        if (controller != null)
-        {
-            controller.TakeDamage(damage);
-        }
-
-
-    }
-    */
 }

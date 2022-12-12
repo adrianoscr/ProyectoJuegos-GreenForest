@@ -20,6 +20,7 @@ public class FlyingEnemyController : MonoBehaviour
     float absoluteDistance;
 
 
+
     void Update()
     {
 
@@ -28,7 +29,7 @@ public class FlyingEnemyController : MonoBehaviour
         //Remove - from distance.
         absoluteDistance = Mathf.Abs(distance);
 
-        if (absoluteDistance < 5)
+        if (absoluteDistance < 4)
         {
             mustChaseYou = true;
         }
@@ -51,4 +52,7 @@ public class FlyingEnemyController : MonoBehaviour
 
 
     }
+
+
+
 }

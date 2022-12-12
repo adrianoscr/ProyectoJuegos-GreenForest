@@ -19,7 +19,7 @@ public class ProjectileController : MonoBehaviour
     void Start()
     {
         GetComponent<Rigidbody2D>().velocity =
-               (transform.right * -1) * speed * Time.deltaTime;
+               (transform.right * -1) * (speed * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
