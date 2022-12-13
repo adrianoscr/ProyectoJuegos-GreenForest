@@ -10,7 +10,8 @@ public class CoinController : MonoBehaviour
         if (collision.gameObject.tag=="Player") {
 
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SessionManager.Instance.AgregarLlave(1);
+            SceneManager.LoadScene(1);
         
         }   
     }

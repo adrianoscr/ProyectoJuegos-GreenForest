@@ -39,4 +39,16 @@ public class SessionManager : Singleton<SessionManager>
     }
 
 
+    //Llaves
+    public int GetLlaves()
+    {
+        return player.Llave;
+    }
+
+    public void AgregarLlave(int value)
+    {
+        player.Llave += value;
+    }
+
+
 }
